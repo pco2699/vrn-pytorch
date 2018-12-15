@@ -27,7 +27,7 @@ if enable_cuda:
     VRN.cuda()
 
 ### get landmarks from test image
-image_file = 'examples/star-1.jpg'
+image_file = 'examples/fukano.jpg'
 image = cv.imread(image_file)
 try:
     image_height, image_width, image_depth = image.shape
@@ -53,9 +53,9 @@ for var in  preds[0]:
     if maxY < var[1]:
         maxY = var[1]
     
-    cv.circle(canvas, (var[0], var[1]), 4, [128, 0, 255], thickness=-1)
+#    cv.circle(canvas, (var[0], var[1]), 4, [128, 0, 255], thickness=-1)
 #
-plt.imshow(canvas[:,:,[2,1,0]])
+# plt.imshow(canvas[:,:,[2,1,0]])
 
 ### crop face image
 scale=90/math.sqrt((minX-maxX)*(minY-maxY))
@@ -93,7 +93,7 @@ if rh - y < crop_height/2:
 #
 crop_image = cv.copyMakeBorder(resized_image,top, bottom, left, right,cv.BORDER_REFLECT)
 crop_image = crop_image[cy-crop_height/2:cy+crop_height/2, cx-crop_width/2:cx+crop_width/2, :]
-plt.imshow(crop_image[:,:,[2,1,0]])
+# plt.imshow(crop_image[:,:,[2,1,0]])
 
 
 
@@ -146,11 +146,11 @@ print('Calculated the isosurface, save at obj file:',obj_file)
 
 
 ### plot 3d mesh
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
 
-verts, faces = mcubes.marching_cubes(vol, 10)
-ax.plot_trisurf(verts[:, 0], verts[:, 1], faces, verts[:, 2],
-                cmap='Spectral', lw=1)
+# verts, faces = mcubes.marching_cubes(vol, 10)
+#ax.plot_trisurf(verts[:, 0], verts[:, 1], faces, verts[:, 2],
+#                cmap='Spectral', lw=1)
